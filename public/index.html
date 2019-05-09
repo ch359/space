@@ -29,11 +29,14 @@
     {
         this.load.image('background', 'assets/skies/deep-space.jpg');
         this.load.image('playerShip', 'assets/ship.png');
+        this.load.image('red', 'assets/red.png');
     }
 
     let bg;
     let playerShip;
     let cursors;
+    let particles;
+    let emitter;
 
     function create()
     {
@@ -43,13 +46,25 @@
         playerShip.setCollideWorldBounds(true);
         playerShip.setBounce(0.5, 0.5);
         cursors = this.input.keyboard.createCursorKeys();
+        particles = this.add.particles('red');
+        emitter = particles.createEmitter({
+            speed: 1,
+            lifespan: 30,
+            scale: { start: 0.2, end: 0 },
+            blendMode: 'ADD',
+            visible: false
+        });
+
     }
 
     function update() {
         if (cursors.up.isDown) {
             this.physics.velocityFromRotation(playerShip.rotation, 100, playerShip.body.acceleration);
+            calculateExhaust(playerShip.body.center.x, playerShip.body.center.y, playerShip.body.angle);
+            emitter.visible = true;
             console.log('Up arrow is pressed')
         } else {
+            emitter.visible = false;
             if (playerShip.body.acceleration !== 0) {
                 this.physics.velocityFromRotation(playerShip.rotation, 0, playerShip.body.acceleration);
             }
@@ -62,6 +77,19 @@
             if (playerShip.body.angularVelocity !== 0) {
                 playerShip.body.angularVelocity = 0;
             }
+        }
+        // console.log('Body x: ', playerShip.body.x);
+        // console.log('Body y: ', playerShip.body.y);
+        // console.log('Body center: ', playerShip.body.center);
+        // console.log('Facing: ', playerShip.body.facing);
+        // console.log('Rotation', playerShip.body.rotation);
+        // console.log('Angle', playerShip.body.angle);
+    }
+
+    function calculateExhaust(x, y, angle) {
+        if (angle < 90) {
+            let pixelAmount = angle / 4;
+            emitter.setPosition(x - pixelAmount, y + pixelAmount);
         }
     }
 </script>
