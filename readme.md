@@ -18,6 +18,12 @@ Exploring Javascript, HTML5 canvas and Phaser
 - Up arrow accelerates the ship in the direction of pointing
 - To slow down, you'll need to rotate the ship and accelerate away from the direction of motion
 
+#### Screenshots
+
+Early version - ship only:
+
+![ship screenshot](readme_assets/ship.PNG)
+
 #### Assets used
 
 Used some example [Phaser 3 assets](https://github.com/photonstorm/phaser-examples) available under the MIT license. Thanks, folks!
