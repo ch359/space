@@ -22,7 +22,7 @@ Exploring Javascript, HTML5 canvas and Phaser
 
 Early version - ship only:
 
-![](readme_assets/ship.PNG)
+![ship_screenshot](readme_assets/ship.png)
 
 #### Assets used
 
