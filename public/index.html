@@ -46,6 +46,23 @@
     }
 
     function update() {
+        if (cursors.up.isDown) {
+            this.physics.velocityFromRotation(playerShip.rotation, 100, playerShip.body.acceleration);
+            console.log('Up arrow is pressed')
+        } else {
+            if (playerShip.body.acceleration !== 0) {
+                this.physics.velocityFromRotation(playerShip.rotation, 0, playerShip.body.acceleration);
+            }
+        }
+        if (cursors.left.isDown) {
+            playerShip.body.angularVelocity = -100;
+        } else if (cursors.right.isDown) {
+            playerShip.body.angularVelocity = 100;
+        } else {
+            if (playerShip.body.angularVelocity !== 0) {
+                playerShip.body.angularVelocity = 0;
+            }
+        }
     }
 </script>
 
