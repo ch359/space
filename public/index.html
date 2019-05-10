@@ -27,18 +27,29 @@
 
     function preload ()
     {
-        this.load.image('background', 'assets/skies/deep-space.jpg');
-        this.load.image('playerShip', 'assets/ship.png');
+      this.load.image('background', 'assets/skies/deep-space.jpg');
+      this.load.image('moonLava', 'assets/moon1.png');
+      this.load.image('blueMoon', 'assets/moon3.png');
+      this.load.image('moonLife', 'assets/moon6.png');
+      this.load.image('playerShip', 'assets/ship.png');
     }
 
     let bg;
     let playerShip;
     let cursors;
+    let moonLava;
+    let moonLife;
+    let blueMoon;
 
     function create()
     {
         bg = this.add.tileSprite(0, 0, 800, 600, 'background');
         bg.setOrigin(0.0);
+        moonLava = this.add.image(200, 200, 'moonLava');
+        moonLife = this.add.image(500, 400, 'moonLife');
+        blueMoon = this.add.image(700, 150, 'blueMoon');
+
+
         playerShip = this.physics.add.sprite(100, 400, 'playerShip');
         playerShip.setCollideWorldBounds(true);
         playerShip.setBounce(0.5, 0.5);
